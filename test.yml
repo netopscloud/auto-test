@@ -1,0 +1,36 @@
+---
+
+
+
+- name: This playbook for install apache web server
+  hosts: localhost
+  tasks:
+    - name: Install HTTPD package
+      yum: name=httpd state=present
+
+    - name: Start Apache server and enable it
+      service: name=httpd state=started
+
+    - name: copy index.html file in docroot
+      copy: src=/home/shelendra/index.html dest=/var/www/html/index.html
+   
+  #  - name: run some commands
+  #    command: "wget http://apache.mirrors.tds.net/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz"
+  
+    - name: Extract tomcat 
+      command: "tar -xvzf apache-tomcat-8.5.24.tar.gz"
+
+    - name: copy in /opt
+      copy: src=apache-tomcat-8.5.24 dest=/opt/tomcat8
+    
+   
+
+
+
+
+
+
+
+
+
+
